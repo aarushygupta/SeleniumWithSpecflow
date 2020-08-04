@@ -23,7 +23,7 @@ namespace SpecflowParallelTest
 
         private readonly IObjectContainer _objectContainer;
 
-        private RemoteWebDriver _driver;
+        private IWebDriver _driver;
 
         public Hooks(IObjectContainer objectContainer)
         {
@@ -34,23 +34,23 @@ namespace SpecflowParallelTest
         public static void InitializeReport()
         {
             //Initialize Extent report before test starts
-            var htmlReporter = new ExtentHtmlReporter(@"C:\extentreport\SeleniumWithSpecflow\SpecflowParallelTest\ExtentReport.html");
+            var htmlReporter = new ExtentHtmlReporter(@"D:\SeleniumWithSpecflow-master\ExtentReport.html");
             htmlReporter.Configuration().Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
             //Attach report to reporter
             extent = new ExtentReports();
-            klov = new KlovReporter();
+            //klov = new KlovReporter();
 
-            klov.InitMongoDbConnection("localhost", 27017);
+            //klov.InitMongoDbConnection("localhost", 27017);
 
-            klov.ProjectName = "ExecuteAutomation Test";
+            //klov.ProjectName = "ExecuteAutomation Test";
 
-            // URL of the KLOV server
-            klov.KlovUrl = "http://localhost:5689";
+            //// URL of the KLOV server
+            //klov.KlovUrl = "http://localhost:5689";
 
-            klov.ReportName = "Karthik KK" + DateTime.Now.ToString();
+            //klov.ReportName = "Karthik KK" + DateTime.Now.ToString();
 
 
-            extent.AttachReporter(htmlReporter, klov);
+            extent.AttachReporter(htmlReporter);
         }
 
         [AfterTestRun]
@@ -116,7 +116,7 @@ namespace SpecflowParallelTest
         [BeforeScenario]
         public void Initialize()
         {
-            SelectBrowser(BrowserType.Firefox);
+            SelectBrowser(BrowserType.Chrome);
             //Create dynamic scenario name
             scenario = featureName.CreateNode<Scenario>(ScenarioContext.Current.ScenarioInfo.Title);
         }
@@ -145,7 +145,7 @@ namespace SpecflowParallelTest
                     service.HideCommandPromptWindow = true;
                     service.SuppressInitialDiagnosticInformation = true;
                     _driver = new FirefoxDriver(service);
-                    _objectContainer.RegisterInstanceAs<RemoteWebDriver>(_driver);
+                    _objectContainer.RegisterInstanceAs<IWebDriver>(_driver);
                     break;
                 case BrowserType.IE:
                     break;

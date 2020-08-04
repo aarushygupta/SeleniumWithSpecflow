@@ -14,9 +14,9 @@ namespace SpecflowParallelTest.Steps
     [Binding]
     class UserFormSteps
     {
-        private RemoteWebDriver _driver;
+        private IWebDriver _driver;
 
-        public UserFormSteps(RemoteWebDriver driver)
+        public UserFormSteps(IWebDriver driver)
         {
             _driver = driver;
         }

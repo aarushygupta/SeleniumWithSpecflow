@@ -30,14 +30,14 @@ namespace SpecflowParallelTest.Pages
 
 
 
-        private readonly RemoteWebDriver _driver;
+        private readonly IWebDriver _driver;
 
-        public LoginPage(RemoteWebDriver driver) => _driver = driver;
+        public LoginPage(IWebDriver driver) => _driver = driver;
 
 
-        IWebElement txtUserName => _driver.FindElementByName("UserName");
-        IWebElement txtPassword => _driver.FindElementByName("Password");
-        IWebElement btnLogin => _driver.FindElementByName("Login");
+        IWebElement txtUserName => _driver.FindElement(By.Name("UserName"));
+        IWebElement txtPassword => _driver.FindElement(By.Name("Password"));
+        IWebElement btnLogin => _driver.FindElement(By.Name("Login"));
 
 
 

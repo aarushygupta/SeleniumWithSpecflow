@@ -16,9 +16,9 @@ namespace SpecflowParallelTest.Steps
     public class LoginSteps
     {
 
-        private RemoteWebDriver _driver;
+        private IWebDriver _driver;
 
-        public LoginSteps(RemoteWebDriver driver) => _driver = driver;
+        public LoginSteps(IWebDriver driver) => _driver = driver;
 
 
         [Given(@"I navigate to application")]
